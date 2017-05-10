@@ -97,6 +97,18 @@ def get_lista_debito(ventas, productos):
             print('Id_vendedor: %s -> %s: $%s = $%d' % (venta.numero_vendedor, venta.codigo_producto,
                                                       venta.cantidad_venta,
                                                       venta.cantidad_venta * get_precio_producto(venta.codigo_producto, productos)))
+def buscar_vendedor(producto_id, productos, ventas):
+    for venta in ventas:
+        # print('%s  == %s' %(producto_id, venta.codigo_producto))
+        if int(producto_id) == int(venta.codigo_producto):
+            print('Fecha: numero_vendedor -> codigo_producto: cantidad_venta, forma_pago')
+            venta.show()
+            print('Precio Final: %d' %(venta.cantidad_venta * get_precio_producto(venta.codigo_producto, productos)))
+            return 0
+
+    print('No se han registrado ventas del producto: %s' % producto_id)
+
+
 
 
 def menu():
@@ -157,11 +169,11 @@ def menu():
         elif opc == 4:
             get_lista_debito(ventas,productos)
             # Generar Listado, Ventas Debito por Vendedor
-            print(4)
         elif opc == 5:
             # Buscar vendedor por producto vendido
             print('Buscar vendedor por producto vendido')
-
+            codigo_producto = input('Ingrese el código del producto: > ')
+            buscar_vendedor(codigo_producto, productos, ventas)
         elif opc == 6:
             total_ventas = get_total_ventas(ventas)
             print('Total vendido: $%d' % total_ventas)
@@ -173,10 +185,12 @@ def menu():
                 print('No existen pagos realizados con tarjeta')
         elif opc == 8:
             print('Listar Productos')
+
             for producto in productos:
                 producto.show()
         elif opc == 9:
             print('Listar Ventas')
+            print('Fecha: numero_vendedor -> codigo_producto: cantidad_venta, forma_pago')
             for venta in ventas:
                 venta.show()
 
