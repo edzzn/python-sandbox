@@ -12,6 +12,10 @@ def verificar_cedula(cedula):
     :param cedula: 
     :return: Boolean
     """
+    # La cedula debe tener 10 digitos
+    if len(cedula) != 10:
+        return false   
+    
     multi_a = [2, 1, 2, 1, 2, 1, 2, 1, 2]
 
     # Convertimos el string cedula a una lista de enteros
@@ -20,6 +24,10 @@ def verificar_cedula(cedula):
 
     # Transformamos la lista a enteros
     lista_verficadora = [int(i) for i in lista_verficadora]
+    
+    # Los primeros dos digitos deben ser menores a 25
+    if (lista_verficadora[0] + lista_verficadora[1]) > 25:
+        return false
 
     # Multiplicamos la lista de los digitos de la cedula con multi_a
     lista_verficadora = [a * b for a, b in zip(lista_verficadora, multi_a)]
